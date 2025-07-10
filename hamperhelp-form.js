@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchPostalCodes();
   updateLiveClock();
   setMinMaxDate();
-  initAddressAutocomplete();
+//  initAddressAutocomplete();
   setInterval(updateLiveClock, 60000);
 
   document.getElementById("postal").addEventListener("input", e => {
