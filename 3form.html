@@ -1,0 +1,54 @@
+<!-- ✅ HamperHelp Form Embed -->
+<div class="section">
+  <h2>Start Your Laundry Pickup</h2>
+
+  <!-- ✅ Address & Contact -->
+  <label>Postal Code:</label>
+  <input type="text" id="postal" placeholder="e.g. N9B 2X1" />
+  <button id="check-postal" class="btn-inline">Check My Area</button>
+  <div id="postal-message"></div>
+
+  <div id="section-out-of-range" style="display:none;">
+    <p>We’ll let you know when we expand!</p>
+    <input type="email" id="notify-email" placeholder="Enter your email" />
+    <input type="hidden" id="notify-postal" />
+    <button>Notify Me</button>
+  </div>
+
+  <div id="section-info" style="display:none;">
+    <label>Address:</label>
+    <input type="text" id="address" placeholder="Start typing..." />
+
+    <label>Phone Number:</label>
+    <input type="text" id="phone" placeholder="(123) 456-7890" />
+
+    <p id="live-clock" style="margin-top:10px; font-style:italic;"></p>
+
+    <!-- ✅ Pickup Day Buttons -->
+    <h3>Select Pickup Day</h3>
+    <button class="btn-inline" id="btn-today">Today</button>
+    <button class="btn-inline" id="btn-tomorrow">Tomorrow</button>
+    <button class="btn-inline" id="btn-later">Later in the Week</button>
+    <input type="date" id="later-date" style="display:none;" />
+  </div>
+
+  <!-- ✅ Time Slot Options -->
+  <div id="time-today" class="pickup-btn-group"></div>
+  <div id="time-tomorrow" class="pickup-btn-group"></div>
+  <div id="time-later" class="pickup-btn-group"></div>
+</div>
+
+<!-- ✅ Order Section -->
+<div id="section-order" class="section" style="display:none;">
+  <h3>Your Loads</h3>
+  <div id="load-section"></div>
+  <button id="add-load">Add Load</button>
+
+  <p id="order-total">Order total: $0.00 CAD</p>
+
+  <!-- ✅ Payment Info -->
+  <h3>Payment</h3>
+  <div id="card-element" style="margin-top:10px;"></div>
+  <button id="submit-order" style="margin-top:20px;">Confirm and Pay</button>
+  <div id="confirmation-message"></div>
+</div>
