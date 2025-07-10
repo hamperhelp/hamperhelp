@@ -1,0 +1,32 @@
+<!-- ✅ HEAD SECTION -->
+<!-- Place this in Webflow Page Settings > Custom Code > Before </head> tag -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HamperHelp - Schedule Pickup</title>
+
+  <!-- External Libraries -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEY&libraries=places" async defer></script>
+  <script src="https://js.stripe.com/v3/" defer></script>
+  <script src="https://hamperhelp.github.io/hamperhelp/hamperhelp-form.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 20px; }
+    .section { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 30px; }
+    h2, h3, h4, h5 { margin: 0 0 10px; }
+    input, select, button {
+      display: block; width: 100%; max-width: 500px;
+      margin-top: 10px; padding: 10px;
+      border-radius: 6px; border: 1px solid #ccc;
+    }
+    button { background: #333; color: #fff; border: none; cursor: pointer; }
+    button:hover { background: #555; }
+    .btn-inline { display: inline-block; width: auto; margin-right: 10px; }
+    .load-entry { border-top: 1px dashed #ccc; margin-top: 20px; padding-top: 20px; }
+    #order-total { font-weight: bold; margin-top: 20px; }
+    .pickup-btn-group, .time-dropdown { display: none; margin-top: 10px; }
+    .pickup-btn-group.active { display: block; }
+    .closed { background: #aaa !important; cursor: not-allowed; }
+  </style>
+</head>
