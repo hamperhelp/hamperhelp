@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HamperHelp - Schedule Pickup</title>
+
+  <!-- External Scripts -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places" defer></script>
+  <script src="https://js.stripe.com/v3/" defer></script>
+  <script src="https://hamperhelp.github.io/hamperhelp/hamperhelp-form.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    body { font-family: Arial, sans-serif; background: #f2f2f2; margin: 0; padding: 20px; display: flex; justify-content: center; }
+    #form-container { max-width: 700px; width: 100%; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .section { margin-bottom: 30px; }
+    h2, h3, h4, h5 { margin-bottom: 10px; }
+    input, select, button { width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc; }
+    button { background: #222; color: white; cursor: pointer; border: none; }
+    button:hover { background: #444; }
+    .btn-inline { display: inline-block; width: auto; margin: 10px 10px 0 0; padding: 10px 15px; }
+    .load-entry { border-top: 1px dashed #ccc; margin-top: 20px; padding-top: 20px; }
+    .pickup-btn { margin-top: 10px; padding: 12px; width: 100%; text-align: left; }
+    .pickup-btn.closed { background: #ccc; cursor: not-allowed; }
+    .pickup-btn small { display: block; color: #eee; font-size: 0.85em; }
+    #order-total { margin-top: 20px; font-weight: bold; font-size: 1.2em; }
+    #confirmation-message { margin-top: 20px; color: green; font-weight: bold; }
+    .pickup-btn-group { display: none; margin-top: 10px; }
+    .pickup-btn-group.active { display: block; }
+    .btn-basket.selected, .btn-hamper.selected {
+  background: #0077cc;
+  color: #fff;
+}
+
+    #live-clock { margin-bottom: 15px; font-style: italic; font-size: 0.9em; color: #555; }
+  </style>
+</head>
+<body>
+  <div id="form-container">
+
+    <div id="live-clock"></div>
+
+    <div class="section" id="section-postal">
+      <h2>Let’s Get You Started</h2>
+      <p>Pop in your postal code — we’ll see if you’re in our delivery zone:</p>
+      <input type="text" id="postal" placeholder="N8Y 4G3" maxlength="7" />
+      <button id="check-postal">Check Availability</button>
+      <div id="postal-message"></div>
+    </div>
+
+    <div class="section" id="section-out-of-range" style="display: none;">
+      <h3>Looks like we’re currently not in your area yet.</h3>
+      <p>Leave your info and we’ll reach out when we expand there.</p>
+      <input type="text" id="notify-name" placeholder="First Name" />
+      <input type="text" id="notify-postal" placeholder="Postal Code" readonly />
+      <input type="email" id="notify-email" placeholder="Email (optional)" />
+      <input type="tel" id="notify-phone" placeholder="Phone (optional)" />
+      <button id="notify-submit">Notify Me</button>
+    </div>
+
+    <div class="section" id="section-info" style="display: none;">
+      <h3>Who's the Laundry For?</h3>
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="tel" id="phone" placeholder="(123) 456-7890" required />
+      <input type="email" id="email" placeholder="Email Address" required />
+      <input type="text" id="address" placeholder="Start typing your address..." autocomplete="off" />
+    </div>
+
+    <div class="section" id="section-order" style="display: none;">
+      <h3>What Are We Picking Up?</h3>
+      <div id="load-section"></div>
+      <button id="add-load">Got a bit more? Go ahead and add another load.</button>
+
+      <h3>When Do You Want Us to Pick It Up?</h3>
+      <p>Put your laundry out at the start of your chosen time slot — we’ll take it from there.</p>
+      <div>
+        <button class="btn-inline" id="btn-today">Today</button>
+        <button class="btn-inline" id="btn-tomorrow">Tomorrow</button>
+        <button class="btn-inline" id="btn-later">Later in the Week</button>
+        <input type="date" id="later-date" />
+
+      </div>
+      <div id="time-today" class="pickup-btn-group"></div>
+      <div id="time-tomorrow" class="pickup-btn-group"></div>
+      <div id="time-later" class="pickup-btn-group">
+        <label>Select a date:</label>
+        <input type="date" id="later-date" min="" max="" />
+      </div>
+
+      <div id="order-total">Order total: $0.00 CAD</div>
+      <div id="confirmation-message"></div>
+
+      <div id="card-element" style="margin-top: 20px;"></div>
+      <button id="submit-order">Finalize & Pay</button>
+    </div>
+  </div>
+</body>
+</html>
