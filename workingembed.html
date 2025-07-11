@@ -1,0 +1,121 @@
+<!-- ✅ HamperHelp Clean Full Embed -->
+
+<!-- 🔹 SECTION 1: Service Area Check -->
+<div id="section-postal" class="section-box">
+  <h2>Let’s see if you’re in our service area.</h2>
+
+  <label for="postal">Postal Code</label>
+  <input type="text" id="postal" placeholder="e.g. N9B 2X1" />
+  <button id="check-postal">Check if I’m in the service area</button>
+  <div id="postal-message"></div>
+
+  <!-- ✅ REQUIRED: Element for JS summary display -->
+  <div id="postal-result" style="display:none;"></div>
+
+  <!-- Out-of-Range Subsection -->
+  <div id="section-out-of-range" style="display:none; margin-top:20px;">
+    <p>We’re not in your area yet, but we’re expanding!</p>
+    <label for="notify-name">Name</label>
+    <input type="text" id="notify-name" placeholder="Full name" />
+
+    <label for="notify-email">Email or Phone</label>
+    <input type="text" id="notify-email" placeholder="you@example.com or (123) 456-7890" />
+
+    <input type="hidden" id="notify-postal" />
+    <button id="notify-submit">Notify Me</button>
+  </div>
+</div>
+
+<!-- 🔹 SECTION 2: Contact Info -->
+<div id="section-info" class="section-box" style="display:none;">
+  <h2>Who is this order for?</h2>
+
+  <label for="name">Name</label>
+  <input type="text" id="name" placeholder="Full name" />
+
+  <label for="email">Email</label>
+  <input type="email" id="email" placeholder="you@example.com" />
+
+  <label for="phone">Phone Number</label>
+  <input type="text" id="phone" placeholder="(123) 456-7890" />
+
+  <label for="address">Pickup Address</label>
+  <input type="text" id="address" placeholder="Start typing..." />
+</div>
+
+<!-- 🔹 SECTION 3: Load Builder -->
+<div id="section-order" class="section-box" style="display:none;">
+  <h2>What are we picking up?</h2>
+
+  <div id="load-section"></div>
+  <button id="add-load">Add Load</button>
+</div>
+
+<!-- 🔹 SECTION 4: Pickup Day & Time -->
+<div id="section-pickup" class="section-box" style="display:none;">
+  <h2>Select Pickup Day</h2>
+
+  <div id="pickup-day-buttons">
+    <button class="btn-inline" id="btn-today">Today</button>
+    <button class="btn-inline" id="btn-tomorrow">Tomorrow</button>
+    <button class="btn-inline" id="btn-later">Later in the Week</button>
+    <input type="date" id="later-date" style="display:none;" />
+  </div>
+
+  <div id="time-today" class="pickup-btn-group"></div>
+  <div id="time-tomorrow" class="pickup-btn-group"></div>
+  <div id="time-later" class="pickup-btn-group"></div>
+</div>
+
+<!-- 🔹 SECTION 5: Payment & Summary -->
+<div id="section-payment" class="section-box" style="display:none;">
+  <h2>Payment</h2>
+
+  <!-- Order Summary -->
+  <div id="order-summary">
+    <h3>Order Summary</h3>
+
+    <!-- ✅ REQUIRED: Where load summaries will be inserted -->
+    <div id="summary-load-list"></div>
+
+    <p id="order-total">Order total: $0.00 CAD</p>
+  </div>
+
+  <!-- Stripe Payment Element -->
+  <div id="card-element" style="margin-top:20px;"></div>
+  <button id="submit-order" style="margin-top:20px;">Confirm and Pay</button>
+  <div id="confirmation-message" style="margin-top:10px;"></div>
+</div>
+
+<!-- 🔧 Optional Styling -->
+<style>
+  .section-box {
+    border: 1px solid #ddd;
+    padding: 25px;
+    margin-bottom: 40px;
+    border-radius: 12px;
+    background: #fefefe;
+  }
+  .btn-inline {
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+
+  /* ✅ NEW: Toggle visual feedback */
+  .selected {
+    background-color: #007BFF;
+    color: white;
+    border: 2px solid #0056b3;
+  }
+
+  .closed {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
+  .btn-inline.selected {
+  background-color: #333;
+  color: #fff;
+}
+
+</style>
